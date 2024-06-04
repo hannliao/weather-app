@@ -18,12 +18,28 @@ async function getWeather(location) {
   let city = weather.location.name;
   let region = weather.location.region;
   let country = weather.location.country;
-  let temp = weather.current.temp_f;
+  let temp = Math.round(weather.current.temp_f);
   let condition = weather.current.condition.text;
-  let feelsLike = weather.current.feelslike_f;
+  let feelsLike = Math.round(weather.current.feelslike_f);
+  let uv = Math.round(weather.current.uv);
   let humidity = weather.current.humidity;
   let precip = weather.current.precip_in;
   let wind = weather.current.wind_mph;
+
+  let forecastDays = weather.forecast.forecastday;
+
+  let sunrise = forecastDays[0].astro.sunrise;
+  let sunset = forecastDays[0].astro.sunset;
+
+  let forecast = [];
+  forecastDays.forEach((day) => {
+    let date = parseISO(day.date);
+    date = format(date, 'EEE');
+    let dayCondition = day.day.condition.text;
+    let high = Math.round(day.day.maxtemp_f);
+    let low = Math.round(day.day.mintemp_f);
+    forecast.push({ date, dayCondition, high, low });
+  });
 
   let weatherData = {
     city,
@@ -35,26 +51,11 @@ async function getWeather(location) {
     humidity,
     precip,
     wind,
+    uv,
+    sunrise,
+    sunset,
+    forecast,
   };
-
-  let forecastDays = weather.forecast.forecastday;
-  forecastDays.forEach((day) => {
-    let date = parseISO(day.date);
-    date = format(date, 'EEE');
-
-    let high = day.day.maxtemp_f;
-    let low = day.day.mintemp_f;
-    console.log(
-      `date: ${date}, high: ${Math.round(high)}, low: ${Math.round(low)}`
-    );
-  });
-
-  console.log(`location: ${city}, ${region}, ${country}`);
-  console.log(`temp: ${temp}`);
-  console.log(`condition: ${condition}`);
-  console.log(
-    `feels like: ${feelsLike}, humidity: ${humidity}, chance of rain: ${precip}, wind: ${wind}`
-  );
 
   return weatherData;
 }
