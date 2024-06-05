@@ -6,9 +6,18 @@
     <title>Weather App</title>
   </head>
   <body>
-    <div class="search">
-      <input type="text" id="searchbar" placeholder="search" />
-      <div class="autocompletions"></div>
+    <div class="top-row">
+      <div class="search">
+        <input type="text" id="searchbar" placeholder="search" />
+        <div class="autocompletions"></div>
+      </div>
+      <div class="toggle">
+        &deg;C
+        <button id="pill">
+          <div id="circle"></div>
+        </button>
+        &deg;F
+      </div>
     </div>
 
     <div class="loading">Loading...</div>
@@ -18,8 +27,8 @@
         <h2 id="location"></h2>
         <div class="temp-condition">
           <div id="condition-icon"></div>
+          <p id="condition"></p>
           <h1 id="temp"></h1>
-          <h4 id="condition"></h4>
           <div class="temps">
             <div id="feels-like"></div>
             <div id="high"></div>

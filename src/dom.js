@@ -1,4 +1,4 @@
-import { search } from './index.js';
+import { search, units } from './index.js';
 import { getWeather, getSearch } from './api.js';
 import icons from './icons.js';
 import sunriseIcon from './img/sunrise.png';
@@ -55,7 +55,10 @@ async function showWeather(location) {
     );
     conditionIconDiv.appendChild(conditionIcon);
 
-    temp.textContent = `${weatherData.temp}\u00B0F`;
+    temp.textContent =
+      units === 'f'
+        ? `${weatherData.temp}\u00B0F`
+        : `${weatherData.temp}\u00B0C`;
     condition.textContent = `${weatherData.condition.text}`;
 
     feelsLike.textContent = `Feels like: ${weatherData['feelsLike']}\u00B0`;
@@ -72,9 +75,12 @@ async function showWeather(location) {
     humidity.append(createIcon(humidityIcon, 'humidity'));
 
     precip.innerHTML = `Chance of rain<br>${weatherData['precip']}%`;
-    precip.append(createIcon(precipIcon, 'precipitation'));
+    precip.append(createIcon(precipIcon, 'chance-of-rain'));
 
-    wind.innerHTML = `Wind<br>${weatherData['wind']} mph`;
+    wind.innerHTML =
+      units === 'f'
+        ? `Wind<br>${weatherData['wind']} mph`
+        : `Wind<br>${weatherData['wind']} kph`;
     wind.append(createIcon(windIcon, 'wind'));
 
     uv.innerHTML = `UV index<br>${weatherData['uv']}`;

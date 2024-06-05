@@ -3,18 +3,27 @@ import { getWeather } from './api.js';
 import { showWeather, showAutocomplete, clear } from './dom.js';
 
 const searchbar = document.getElementById('searchbar');
-
 const loading = document.querySelector('.loading');
 const section = document.querySelector('section');
+const toggleButton = document.getElementById('pill');
 
-function search(location) {
+let units = 'c';
+let location = 'denver';
+
+function search(loc) {
   loading.style.display = 'block';
   section.style.display = 'none';
 
-  location = location || searchbar.value;
+  location = loc || searchbar.value;
   getWeather(location);
   clear();
   showWeather(location);
+}
+
+function toggle() {
+  toggleButton.classList.toggle('active');
+  units = units === 'f' ? 'c' : 'f';
+  search(location);
 }
 
 searchbar.addEventListener('keyup', (event) => {
@@ -26,7 +35,11 @@ searchbar.addEventListener('keyup', (event) => {
   }
 });
 
-getWeather('denver');
-showWeather('denver');
+toggleButton.addEventListener('click', () => {
+  toggle();
+});
 
-export { search };
+getWeather(location);
+showWeather(location);
+
+export { search, units, location };
