@@ -1,4 +1,5 @@
-import { getWeather, location } from './index.js';
+import { search } from './index.js';
+import { getWeather, getSearch } from './api.js';
 import icons from './icons.js';
 import sunriseIcon from './img/sunrise.png';
 import sunsetIcon from './img/sunset.png';
@@ -21,6 +22,8 @@ const precip = document.getElementById('precip');
 const wind = document.getElementById('wind');
 const uv = document.getElementById('uv');
 const tenDayForecast = document.querySelector('.forecast');
+const autocompletions = document.querySelector('.autocompletions');
+const searchbar = document.getElementById('searchbar');
 
 function createDiv(className) {
   const div = document.createElement('div');
@@ -40,11 +43,11 @@ function findIcon(code) {
   return iconObject.icon;
 }
 
-async function displayWeather() {
+async function showWeather(location) {
   try {
     const weatherData = await getWeather(location);
 
-    locationName.textContent = `${weatherData.city}, ${weatherData.region}, ${weatherData.country}`;
+    locationName.innerHTML = `${weatherData.city}, ${weatherData.region}<br>${weatherData.country}`;
 
     const conditionIcon = createIcon(
       findIcon(weatherData.condition.code),
@@ -82,16 +85,18 @@ async function displayWeather() {
     forecast.forEach((day) => {
       const dayForecast = createDiv('day');
       const date = day.date;
-      const dayCondition = createIcon(
+      const dayConditionIcon = createIcon(
         findIcon(day.dayCondition.code),
         day.dayCondition.text
       );
+      const dayCondition = createDiv('smaller');
+      dayCondition.textContent = day.dayCondition.text;
       const dayHigh = day.high;
       const dayLow = day.low;
       const hiLo = createDiv('hi-lo');
       hiLo.textContent = `${dayLow}\u00B0 - ${dayHigh}\u00B0`;
 
-      dayForecast.append(date, dayCondition, hiLo);
+      dayForecast.append(date, dayConditionIcon, dayCondition, hiLo);
 
       tenDayForecast.appendChild(dayForecast);
     });
@@ -100,9 +105,34 @@ async function displayWeather() {
   }
 }
 
+async function showAutocomplete() {
+  try {
+    let result = await getSearch();
+
+    autocompletions.textContent = '';
+
+    if (result !== null && result.length !== 0) {
+      result.forEach((autocomplete) => {
+        const autocompletion = document.createElement('button');
+        autocompletion.classList.add('autocompletion');
+        autocompletion.textContent = `${autocomplete.name}, ${autocomplete.region}, ${autocomplete.country}`;
+        autocompletions.appendChild(autocompletion);
+
+        autocompletion.addEventListener('click', () => {
+          search(autocomplete.name);
+        });
+      });
+    }
+  } catch (err) {
+    console.log(`Autocompletion error: ${err}`);
+  }
+}
+
 function clear() {
   conditionIconDiv.textContent = '';
   tenDayForecast.textContent = '';
+  autocompletions.textContent = '';
+  searchbar.value = '';
 }
 
-export { displayWeather, clear };
+export { showWeather, showAutocomplete, clear };

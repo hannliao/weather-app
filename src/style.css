@@ -1,6 +1,7 @@
 :root {
-  --bg-blue: rgb(177, 202, 214);
-  --bg-gray: rgba(112, 112, 112, 0.411);
+  --bg-light: rgb(177, 202, 214);
+  --bg-dark: rgba(9, 49, 71, 0.5);
+  --hover: rgb(163, 184, 194);
 }
 
 @font-face {
@@ -29,17 +30,57 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--bg-blue);
+  background-color: var(--bg-light);
   color: white;
+  font-size: 20px;
+}
+
+.search {
+  display: grid;
+  justify-items: center;
 }
 
 #searchbar {
   padding: 10px;
-  font-size: 14px;
   border: none;
   border-radius: 25px;
-  margin: 20px;
+  margin-top: 30px;
   width: 700px;
+}
+
+.autocompletions {
+  display: grid;
+}
+
+.autocompletion {
+  background-color: white;
+  color: black;
+  font-size: 12px;
+  padding: 8px 20px;
+  border: none;
+  width: 670px;
+  text-align: left;
+}
+
+button:hover {
+  background-color: var(--hover);
+  cursor: pointer;
+}
+
+.section {
+  padding: 20px;
+  border: none;
+  border-radius: 25px;
+  margin: 25px;
+  background-color: var(--bg-dark);
+  width: 700px;
+  text-align: center;
+  display: grid;
+  gap: 20px;
+}
+
+.current {
+  gap: 0;
 }
 
 #condition-icon img {
@@ -66,18 +107,6 @@ body {
   font-size: 120px;
 }
 
-.section {
-  padding: 20px;
-  border: none;
-  border-radius: 25px;
-  margin: 30px;
-  background-color: var(--bg-gray);
-  width: 700px;
-  text-align: center;
-  display: grid;
-  gap: 20px;
-}
-
 .conditions {
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
@@ -101,10 +130,18 @@ body {
 
 .day {
   display: grid;
-  grid-template-columns: repeat(3, 100px);
+  grid-template-columns: 150px 50px 300px 150px;
   justify-items: center;
 }
 
 img {
   filter: invert(100%);
+}
+
+.smaller {
+  font-size: 16px;
+}
+
+footer {
+  margin: 30px;
 }
