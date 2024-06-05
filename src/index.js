@@ -1,7 +1,6 @@
 import './style.css';
-
 import { format, parseISO } from 'date-fns';
-import { displayWeather } from './dom.js';
+import { displayWeather, clear } from './dom.js';
 
 const API_KEY = '699e4653fb944da28ca183424240306';
 
@@ -19,12 +18,13 @@ async function getWeather(location) {
   let region = weather.location.region;
   let country = weather.location.country;
   let temp = Math.round(weather.current.temp_f);
-  let condition = weather.current.condition.text;
+  let condition = weather.current.condition;
   let feelsLike = Math.round(weather.current.feelslike_f);
-  let uv = Math.round(weather.current.uv);
+
   let humidity = weather.current.humidity;
   let precip = weather.current.precip_in;
   let wind = weather.current.wind_mph;
+  let uv = Math.round(weather.current.uv);
 
   let forecastDays = weather.forecast.forecastday;
 
@@ -35,7 +35,7 @@ async function getWeather(location) {
   forecastDays.forEach((day) => {
     let date = parseISO(day.date);
     date = format(date, 'EEE');
-    let dayCondition = day.day.condition.text;
+    let dayCondition = day.day.condition;
     let high = Math.round(day.day.maxtemp_f);
     let low = Math.round(day.day.mintemp_f);
     forecast.push({ date, dayCondition, high, low });
@@ -63,6 +63,7 @@ async function getWeather(location) {
 searchbar.addEventListener('keydown', (event) => {
   if (event.key === 'Enter') {
     location = searchbar.value;
+    clear();
     getWeather(location);
     displayWeather();
   }

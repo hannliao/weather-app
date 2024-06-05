@@ -1,9 +1,6 @@
 :root {
   --bg-blue: rgb(177, 202, 214);
-  --bg-gray: rgba(112, 112, 112, 0.333);
-  --hover-gray: #ecefef;
-  --border-gray: #b7b7b7;
-  --font-gray: #5c5c5c;
+  --bg-gray: rgba(112, 112, 112, 0.411);
 }
 
 @font-face {
@@ -33,6 +30,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: var(--bg-blue);
+  color: white;
 }
 
 #searchbar {
@@ -42,6 +40,10 @@ body {
   border-radius: 25px;
   margin: 20px;
   width: 700px;
+}
+
+#condition-icon img {
+  width: 70px;
 }
 
 .temp-condition {
@@ -71,4 +73,38 @@ body {
   margin: 30px;
   background-color: var(--bg-gray);
   width: 700px;
+  text-align: center;
+  display: grid;
+  gap: 20px;
+}
+
+.conditions {
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+}
+
+.conditions div {
+  display: grid;
+  grid-template-columns: 52px 180px;
+  justify-items: center;
+  align-items: center;
+}
+
+.conditions div img {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.forecast {
+  justify-items: center;
+}
+
+.day {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  justify-items: center;
+}
+
+img {
+  filter: invert(100%);
 }
