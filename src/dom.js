@@ -119,7 +119,7 @@ async function showAutocomplete() {
         autocompletions.appendChild(autocompletion);
 
         autocompletion.addEventListener('click', () => {
-          search(autocomplete.name);
+          search(`${autocompletion.textContent}`);
         });
       });
     }

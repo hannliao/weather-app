@@ -2,12 +2,17 @@ import { format, parseISO } from 'date-fns';
 
 const API_KEY = '699e4653fb944da28ca183424240306';
 
+const loading = document.querySelector('.loading');
+const section = document.querySelector('section');
+
 async function getWeather(location) {
   let response = await fetch(
     `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=10`,
     { mode: 'cors' }
   );
   let weather = await response.json();
+  loading.style.display = 'none';
+  section.style.display = 'block';
 
   let city = weather.location.name;
   let region = weather.location.region;

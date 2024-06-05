@@ -35,6 +35,14 @@ body {
   font-size: 20px;
 }
 
+.loading {
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--bg-dark);
+  height: 100vh;
+  align-content: center;
+}
+
 .search {
   display: grid;
   justify-items: center;

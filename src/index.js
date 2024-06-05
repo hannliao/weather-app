@@ -4,10 +4,14 @@ import { showWeather, showAutocomplete, clear } from './dom.js';
 
 const searchbar = document.getElementById('searchbar');
 
-function search(location) {
-  location = location || searchbar.value;
-  console.log(`location: ${location}`);
+const loading = document.querySelector('.loading');
+const section = document.querySelector('section');
 
+function search(location) {
+  loading.style.display = 'block';
+  section.style.display = 'none';
+
+  location = location || searchbar.value;
   getWeather(location);
   clear();
   showWeather(location);
