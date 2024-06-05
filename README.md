@@ -10,8 +10,8 @@
 
 ## Credits
 
-- Weather data by [WeatherAPI] (https://www.weatherapi.com/)
-- Weather icons by [Icons8] (https://icons8.com)
+- Weather data by [WeatherAPI](https://www.weatherapi.com)
+- Weather icons by [Icons8](https://icons8.com)
 
 This project was completed as an assignment from The Odin Project.  
 Date completed: 06/05/24
