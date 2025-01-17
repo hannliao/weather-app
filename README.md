@@ -8,6 +8,13 @@
 - Display icons based on weather conditions
 - Toggle units (&deg;C/kph or &deg;F/mph)
 
+## Built with
+
+- [TypeScript](https://www.typescriptlang.org/)
+- JavaScript
+- HTML
+- CSS
+
 ## Credits
 
 - Weather data by [WeatherAPI](https://www.weatherapi.com)
@@ -15,3 +22,4 @@
 
 This project was completed as an assignment from The Odin Project.  
 Date completed: 06/05/24
+Date updated with TypeScript: 01/17/25
