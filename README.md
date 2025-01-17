@@ -23,5 +23,5 @@
 <img width="585" alt="Image" src="https://github.com/user-attachments/assets/7b79e844-b274-45cc-9c59-9c7ec5ae7dc0" />
 
 This project was completed as an assignment from The Odin Project.  
-Date completed: 06/05/24
-Date updated with TypeScript: 01/17/25
+Date completed: 06/05/24  
+Converted to TypeScript: 01/17/25
