@@ -183,8 +183,8 @@ button:hover {
 
 .day {
   display: grid;
-  grid-template-columns: 150px 50px 300px 150px;
-  justify-items: center;
+  grid-template-columns: 120px 50px 300px 70px 70px;
+  justify-items: start;
 }
 
 img {
@@ -193,6 +193,19 @@ img {
 
 .smaller {
   font-size: 16px;
+}
+
+.lowTemp,
+.highTemp {
+  display: flex;
+  align-items: center;
+}
+
+.lowTemp img,
+.highTemp img {
+  width: 22px;
+  height: 22px;
+  padding-right: 2px;
 }
 
 footer {
