@@ -132,7 +132,7 @@ async function getWeather(location: string) {
 async function getSearch() {
   const searchbar = document.getElementById('searchbar') as HTMLInputElement;
   let response = await fetch(
-    `http://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${searchbar.value}`,
+    `https://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${searchbar.value}`,
     { mode: 'cors' }
   );
   let search = await response.json();
